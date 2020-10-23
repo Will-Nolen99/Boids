@@ -26,12 +26,14 @@ public class BoidsSimulation extends PApplet {
     
     ArrayList<Boid> boids = new ArrayList<Boid>();
     
+    final int vision = 50;
+    
     
     
     
     // method for setting the size of the window
     public void settings(){
-        size(500, 500);
+        size(1000, 1000);
         
     }
 
@@ -47,14 +49,17 @@ public class BoidsSimulation extends PApplet {
     	
     	for(int i = 0; i < NUMBER_OF_BODIES; i++) {
     		
-    		PVector v = new PVector();
-    		v.set(random(100), random(100));
     		Boid b = new Boid(this);
-    		PVector coords = new PVector();
-    		coords.x = random(width);
-    		coords.y = random(height);
+    		PVector coords = PVector.random2D();
+
+    		
+    		PVector vel = PVector.random2D();
+
+    		PVector acc = PVector.random2D();
     		
     		b.setCoords(coords);
+    		b.setVelocity(vel);
+    		b.setAcceleration(acc);
     		boids.add(b);
     		
     	}
@@ -70,6 +75,33 @@ public class BoidsSimulation extends PApplet {
     public void draw(){
     	
     	background(colors.get("background"));
+    	
+    	for(Boid b: boids) {
+    		b.update();
+    		
+    		PVector current = b.coords();
+    		
+    		PVector total = new PVector();
+    		int count = 0;
+    		
+    		for(Boid other: boids) {
+    			
+    			PVector test = other.coords();
+    			
+    			if(current.dist(test) < vision) {
+    				total.add(test);
+    				count++;
+    			}
+    			
+    		PVector averagePos = total.div(count);
+    		PVector difference = current.sub(averagePos);
+    			
+    			
+    		}
+    		
+    		
+    		
+    	}
     	
     	
     	for(Boid b: boids) {

@@ -9,7 +9,8 @@ public class Boid {
 
 	private PVector coords, velocity, acceleration;
 	private PApplet p;
-	private float direction, size;
+	private float direction = 0; 
+	final int size = 25;
 	private Map<String, Integer> colors = new HashMap<String, Integer>();
 	
 	public Boid(PApplet canvas) {
@@ -18,8 +19,6 @@ public class Boid {
 		this.coords = PVector.random2D();
 		this.velocity = new PVector();
 		this.acceleration = new PVector();
-		this.direction = 0;
-		this.size = 25;
     	colors.put("background", p.color(31, 54, 61)); // dark blue
     	colors.put("outline", p.color(36, 33, 36)); // raisin black
     	colors.put("body", p.color(156, 175, 183)); //light grey
@@ -65,13 +64,26 @@ public class Boid {
 		this.p.strokeWeight(2);
 		this.p.stroke(this.colors.get("outline"));
 		this.p.fill(this.colors.get("body"));
-		
 		this.p.circle(this.coords.x, this.coords.y, this.size);
-		
-		
 		
 	}
 	
+	public void update() {
+		this.coords.add(this.velocity);
+		//this.velocity.add(this.acceleration);
+		
+		if(this.coords.x < 10 || this.coords.x > p.width - 10) {
+			this.velocity.x *= -1;
+			this.acceleration.x *= -1;
+		}
+		
+		if(this.coords.y < 10 || this.coords.y > p.width - 10) {
+			this.velocity.y *= -1;
+			this.acceleration.y *= -1;
+			
+		}
+		
+	}
 	
 
 	
