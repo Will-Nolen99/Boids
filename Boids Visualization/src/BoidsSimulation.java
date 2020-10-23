@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import processing.core.PApplet;
+import processing.core.PVector;
 
 public class BoidsSimulation extends PApplet {
 
@@ -32,8 +33,6 @@ public class BoidsSimulation extends PApplet {
     public void settings(){
         size(500, 500);
         
-        
-        
     }
 
     // identical use to setup in Processing IDE except for size()
@@ -43,6 +42,25 @@ public class BoidsSimulation extends PApplet {
     	colors.put("outline", color(36, 33, 36)); // raisin black
     	colors.put("body", color(156, 175, 183)); //light grey
     	
+    	final int NUMBER_OF_BODIES = 50;
+    	
+    	
+    	for(int i = 0; i < NUMBER_OF_BODIES; i++) {
+    		
+    		PVector v = new PVector();
+    		v.set(random(100), random(100));
+    		Boid b = new Boid(this);
+    		PVector coords = new PVector();
+    		coords.x = random(width);
+    		coords.y = random(height);
+    		
+    		b.setCoords(coords);
+    		boids.add(b);
+    		
+    	}
+    	
+    	
+    	
     	
     	
         background(colors.get("background"));
@@ -51,9 +69,12 @@ public class BoidsSimulation extends PApplet {
     // identical use to draw in Processing IDE
     public void draw(){
     	
-    	strokeWeight(1);
-    	stroke(colors.get("outline"));
-    	fill(colors.get("body"));
-        square(width/2, height/2, 15);
+    	background(colors.get("background"));
+    	
+    	
+    	for(Boid b: boids) {
+    		b.show();
+    		
+    	}
     }
 }

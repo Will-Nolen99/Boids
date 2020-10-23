@@ -1,16 +1,30 @@
+import java.util.HashMap;
+import java.util.Map;
+
+import processing.core.*;
+import processing.core.PApplet;
 import processing.core.PVector;
 
 public class Boid {
 
-	PVector coords, velocity, acceleration;
-	float direction;
+	private PVector coords, velocity, acceleration;
+	private PApplet p;
+	private float direction, size;
+	private Map<String, Integer> colors = new HashMap<String, Integer>();
 	
-	public Boid(PVector coordinates) {
+	public Boid(PApplet canvas) {
 		
-		this.coords = coordinates;
-		this.velocity.set(0, 0);
-		this.acceleration.set(0, 0);
+		this.p = canvas;
+		this.coords = PVector.random2D();
+		this.velocity = new PVector();
+		this.acceleration = new PVector();
 		this.direction = 0;
+		this.size = 25;
+    	colors.put("background", p.color(31, 54, 61)); // dark blue
+    	colors.put("outline", p.color(36, 33, 36)); // raisin black
+    	colors.put("body", p.color(156, 175, 183)); //light grey
+
+		
 		
 	}
 	
@@ -46,6 +60,20 @@ public class Boid {
 		this.direction = d;
 	}
 	
+	public void show() {
+		
+		this.p.strokeWeight(2);
+		this.p.stroke(this.colors.get("outline"));
+		this.p.fill(this.colors.get("body"));
+		
+		this.p.circle(this.coords.x, this.coords.y, this.size);
+		
+		
+		
+	}
+	
+	
+
 	
 	
 	@Override
