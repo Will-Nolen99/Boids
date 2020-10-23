@@ -48,9 +48,6 @@ public class Boid {
 	
 	
 	
-	
-	
-	
 	@Override
 	public String toString() {
 		String output = String.format("x: %f, y: %f, dx: %f, dy: %f, d2x: %f, d2y: %f", this.coords.x, this.coords.y, this.velocity.x, this.velocity.y, this.acceleration.x, this.acceleration.y);
