@@ -26,8 +26,7 @@ public class BoidsSimulation extends PApplet {
     
     ArrayList<Boid> boids = new ArrayList<Boid>();
     
-    
-    
+
     
     
     // method for setting the size of the window
@@ -44,6 +43,7 @@ public class BoidsSimulation extends PApplet {
     	colors.put("body", color(156, 175, 183)); //light grey
     	
     	final int NUMBER_OF_BODIES = 100;
+
     	
     	
     	for(int i = 0; i < NUMBER_OF_BODIES; i++) {
@@ -81,8 +81,7 @@ public class BoidsSimulation extends PApplet {
     public void draw(){
     	
     	background(colors.get("background"));
-    	
-    	
+
     	
     	for(Boid b: boids) {
     		
