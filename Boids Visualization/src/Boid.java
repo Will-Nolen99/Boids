@@ -40,11 +40,7 @@ public class Boid {
     	trailColors.put(4, p.color(32, 30, 80)); //purple
     	
     	this.trailColor = PApplet.floor(this.p.random(1, 5));
-    	
-    	
-
-		
-    	
+	
 	}
 	
 	public PVector coords() {
