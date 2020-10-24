@@ -42,7 +42,7 @@ public class BoidsSimulation extends PApplet {
     	colors.put("outline", color(36, 33, 36)); // raisin black
     	colors.put("body", color(156, 175, 183)); //light grey
     	
-    	final int NUMBER_OF_BODIES = 100;
+    	final int NUMBER_OF_BODIES = 200;
 
     	
     	

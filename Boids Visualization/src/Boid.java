@@ -10,11 +10,13 @@ public class Boid {
 	private PVector coords, velocity, acceleration;
 	private PApplet p;
 	private float direction = 0; 
-	private final int size = 25, vision = 50, maxSpeed = 5;
+	private final int vision = 50, maxSpeed = 5;
 	private Map<String, Integer> colors = new HashMap<String, Integer>();
+	private Map<Integer, Integer> trailColors = new HashMap<Integer, Integer>();
 	private ArrayList<PVector> trail;
 	
 	private double maxForce = 0.2;
+	private int trailColor;
 	
 	
 	
@@ -31,10 +33,18 @@ public class Boid {
     	colors.put("background", p.color(31, 54, 61)); // dark blue
     	colors.put("outline", p.color(36, 33, 36)); // raisin black
     	colors.put("body", p.color(156, 175, 183)); //light grey
-    	colors.put("trail", p.color(239, 48, 84)); //red pink
+    	
+    	trailColors.put(1, p.color(239, 48, 84)); //red pink
+    	trailColors.put(2, p.color(203, 239, 67)); //pear
+    	trailColors.put(3, p.color(243, 255, 189));  //cream
+    	trailColors.put(4, p.color(32, 30, 80)); //purple
+    	
+    	this.trailColor = PApplet.floor(this.p.random(1, 5));
+    	
+    	
 
 		
-		
+    	
 	}
 	
 	public PVector coords() {
@@ -72,7 +82,7 @@ public class Boid {
 	public void show() {
 		
 		
-		this.p.stroke(this.colors.get("trail"));
+		this.p.stroke(this.trailColors.get(this.trailColor));
 		this.p.noFill();
 		this.p.beginShape();
 		
@@ -138,20 +148,20 @@ public class Boid {
 	
 	public void edges() {
 		
-		if(this.coords.x < 0) {
-			this.coords.x = p.width;
+		if(this.coords.x < -10) {
+			this.coords.x = p.width + 10;
 			this.trail.clear();
-		}else if(this.coords.x > p.width) {
-			this.coords.x = 0;
+		}else if(this.coords.x > p.width + 10) {
+			this.coords.x = -10;
 			this.trail.clear();
 		}
 		
 		
-		if(this.coords.y < 0) {
-			this.coords.y = p.height;
+		if(this.coords.y < -10) {
+			this.coords.y = p.height + 10;
 			this.trail.clear();
-		}else if(this.coords.y > p.height) {
-			this.coords.y = 0;
+		}else if(this.coords.y > p.height + 10) {
+			this.coords.y = -10;
 			this.trail.clear();
 		}
 		
