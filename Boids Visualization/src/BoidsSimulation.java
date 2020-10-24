@@ -26,7 +26,6 @@ public class BoidsSimulation extends PApplet {
     
     ArrayList<Boid> boids = new ArrayList<Boid>();
     
-    final int vision = 50;
     
     
     
@@ -44,18 +43,25 @@ public class BoidsSimulation extends PApplet {
     	colors.put("outline", color(36, 33, 36)); // raisin black
     	colors.put("body", color(156, 175, 183)); //light grey
     	
-    	final int NUMBER_OF_BODIES = 50;
+    	final int NUMBER_OF_BODIES = 100;
     	
     	
     	for(int i = 0; i < NUMBER_OF_BODIES; i++) {
     		
     		Boid b = new Boid(this);
-    		PVector coords = PVector.random2D();
+    		PVector coords = new PVector();
+    		
+    		coords.x = random(width);
+    		coords.y = random(height);
 
     		
     		PVector vel = PVector.random2D();
 
-    		PVector acc = PVector.random2D();
+    		vel.setMag(random(2, 4));
+    		
+    		PVector acc = new PVector();
+    		acc.x = 0;
+    		acc.y = 0;
     		
     		b.setCoords(coords);
     		b.setVelocity(vel);
@@ -76,37 +82,18 @@ public class BoidsSimulation extends PApplet {
     	
     	background(colors.get("background"));
     	
+    	
+    	
     	for(Boid b: boids) {
+    		
+    		b.flock(boids);
+    		b.edges();
     		b.update();
-    		
-    		PVector current = b.coords();
-    		
-    		PVector total = new PVector();
-    		int count = 0;
-    		
-    		for(Boid other: boids) {
-    			
-    			PVector test = other.coords();
-    			
-    			if(current.dist(test) < vision) {
-    				total.add(test);
-    				count++;
-    			}
-    			
-    		PVector averagePos = total.div(count);
-    		PVector difference = current.sub(averagePos);
-    			
-    			
-    		}
-    		
-    		
-    		
-    	}
-    	
-    	
-    	for(Boid b: boids) {
     		b.show();
     		
+    		
     	}
+    		
+    	//noLoop();
     }
 }
