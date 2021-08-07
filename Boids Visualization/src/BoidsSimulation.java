@@ -13,12 +13,6 @@ public class BoidsSimulation extends PApplet {
     }
 
     
-    /**
-     * Using processing requires global variables as no variables can be passed into draw.
-     * 
-	 * All the globals will be declared here.
-     * 
-     */
     
     // This will store the colors used throughout the program.
     // colors will be initialized in setup
