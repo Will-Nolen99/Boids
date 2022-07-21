@@ -21,3 +21,6 @@ Boids that are close to each other will keep in mind the above three principles.
 There is no current implementation to allow this but changing many of the values in the source code can create very cool effects.
 There is a lot to learn from even turning off some of the principles above and mixing and matching them.
 
+#  Processing
+The visual tools used to draw to the screen were created by the processing foundation.
+https://processing.org/
